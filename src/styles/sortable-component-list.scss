@@ -1,0 +1,16 @@
+:host {
+  box-sizing: border-box;
+  display: block;
+  padding: 1rem;
+}
+
+:host([hidden]),
+[hidden] {
+  display: none !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}

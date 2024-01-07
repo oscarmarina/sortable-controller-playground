@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Demo - sortable-component</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="description" content="sortable-component" />
+    <style>
+      @supports (content-visibility: hidden) {
+        blk-material:is(:not(:defined), :has(:not(:defined))) {
+          content-visibility: hidden; /* Light Dom content is visible - bug?? */
+          visibility: hidden;
+        }
+      }
+
+      @supports not (content-visibility: hidden) {
+        blk-material:not(:defined) {
+          visibility: hidden;
+        }
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        block-size: calc(100% + env(safe-area-inset-top) + env(safe-area-inset-bottom));
+        font-family: sans-serif;
+      }
+
+      main {
+        background-color: var(--surface);
+        max-width: min(100%, calc(864 / 16 * 1rem));
+        margin: 0 auto 2rem;
+        padding: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <all-sortable-components></all-sortable-components>
+    </main>
+
+    <script type="module" src="../define/all-sortable-components.ts"></script>
+  </body>
+</html>

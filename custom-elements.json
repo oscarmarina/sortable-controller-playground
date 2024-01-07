@@ -1,0 +1,991 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/AllSortableComponents.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "## A sortable list component.\n- https://lit.dev/playground/#gist=9b0da2d828676afff4aba3823f38c966\n- https://twitter.com/techytacos/status/1743019772537647273\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/sortable-controller-playground)\n\n__Scaffold generated using__:\n> [npm init @blockquote/wc](https://github.com/oscarmarina/create-wc)\n\n__Reactive Controllers - Lit__:\n- [Lit-Xstate Controller](https://github.com/oscarmarina/XstateController)\n\n<hr>",
+          "name": "AllSortableComponents",
+          "members": [
+            {
+              "kind": "field",
+              "name": "group1",
+              "type": {
+                "text": "array"
+              },
+              "default": "[\n    { name: 'Elliott', email: 'elliott@google.com' },\n    { name: 'Kevin', email: 'kevin@google.com' },\n    { name: 'Justin', email: 'justin@google.com' },\n  ]"
+            },
+            {
+              "kind": "field",
+              "name": "group2",
+              "type": {
+                "text": "array"
+              },
+              "default": "[\n    { name: 'Augustine', email: 'augustine@google.com' },\n    { name: 'Andrew', email: 'andrew@google.com' },\n    { name: 'Justin', email: 'justinf@google.com' },\n  ]"
+            },
+            {
+              "kind": "method",
+              "name": "renderItem",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "Item"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "#addUser",
+              "parameters": [
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "SubmitEvent"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "all-sortable-components",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AllSortableComponents",
+          "declaration": {
+            "name": "AllSortableComponents",
+            "module": "src/AllSortableComponents.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/SortableComponent.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SortableComponent",
+          "slots": [
+            {
+              "description": "This element has a slot",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "#sort",
+              "privacy": "private",
+              "type": {
+                "text": "number"
+              },
+              "default": "1"
+            },
+            {
+              "kind": "field",
+              "name": "#sortableController",
+              "privacy": "private",
+              "type": {
+                "text": "SortableController | undefined"
+              },
+              "description": "Controller for the sortable list.",
+              "default": "new SortableController(this)"
+            },
+            {
+              "kind": "field",
+              "name": "items",
+              "type": {
+                "text": "Item[]"
+              },
+              "default": "[\n    { name: 'Jasper', animal: 'dog', uid: 12345 },\n    { name: 'Wumbo', animal: 'elephant', uid: 234456 },\n    { name: 'Waffles', animal: 'dog', uid: 135677 },\n    { name: 'Nike', animal: 'cat', uid: 234456 },\n    { name: 'Jumbo', animal: 'elephant', uid: 234456 },\n  ]",
+              "description": "The items in the sortable list.",
+              "attribute": "items"
+            },
+            {
+              "kind": "field",
+              "name": "heading",
+              "type": {
+                "text": "string"
+              },
+              "default": "'Hey there'",
+              "description": "The heading to say \"Hello\" to.",
+              "attribute": "heading"
+            },
+            {
+              "kind": "field",
+              "name": "counter",
+              "type": {
+                "text": "number"
+              },
+              "default": "5",
+              "description": "The number of times the button has been clicked.",
+              "attribute": "counter"
+            },
+            {
+              "kind": "field",
+              "name": "renderTarget",
+              "type": {
+                "text": "HTMLElement"
+              },
+              "description": "The target element for rendering the sortable list."
+            },
+            {
+              "kind": "field",
+              "name": "_sortableTpl",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "#onClick",
+              "description": "Add one plus the current counter value."
+            },
+            {
+              "kind": "method",
+              "name": "#toggleSort",
+              "description": "Re-sort the list."
+            }
+          ],
+          "events": [
+            {
+              "name": "counterchange",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Indicates when the count changes"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "heading",
+              "type": {
+                "text": "string"
+              },
+              "default": "'Hey there'",
+              "description": "The heading to say \"Hello\" to.",
+              "fieldName": "heading"
+            },
+            {
+              "name": "counter",
+              "type": {
+                "text": "number"
+              },
+              "default": "5",
+              "description": "The number of times the button has been clicked.",
+              "fieldName": "counter"
+            },
+            {
+              "name": "items",
+              "type": {
+                "text": "Item[]"
+              },
+              "default": "[\n    { name: 'Jasper', animal: 'dog', uid: 12345 },\n    { name: 'Wumbo', animal: 'elephant', uid: 234456 },\n    { name: 'Waffles', animal: 'dog', uid: 135677 },\n    { name: 'Nike', animal: 'cat', uid: 234456 },\n    { name: 'Jumbo', animal: 'elephant', uid: 234456 },\n  ]",
+              "description": "The items in the sortable list.",
+              "fieldName": "items"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "sortable-component",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SortableComponent",
+          "declaration": {
+            "name": "SortableComponent",
+            "module": "src/SortableComponent.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/SortableComponentList.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SortableComponentList",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#sortableController",
+              "privacy": "private",
+              "type": {
+                "text": "SortableController | undefined"
+              },
+              "description": "Controller for the sortable list.",
+              "default": "new SortableController(this)"
+            },
+            {
+              "kind": "field",
+              "name": "items",
+              "type": {
+                "text": "T[]"
+              },
+              "default": "[]",
+              "attribute": "items"
+            },
+            {
+              "kind": "field",
+              "name": "renderItem",
+              "type": {
+                "text": "ItemTemplate<T>"
+              },
+              "attribute": "renderItem"
+            },
+            {
+              "kind": "field",
+              "name": "keyFn",
+              "type": {
+                "text": "KeyFn<T>"
+              },
+              "attribute": "keyFn"
+            },
+            {
+              "kind": "field",
+              "name": "group",
+              "type": {
+                "text": "string | Sortable.GroupOptions | undefined"
+              },
+              "attribute": "group"
+            },
+            {
+              "kind": "field",
+              "name": "sort",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "attribute": "sort"
+            },
+            {
+              "kind": "field",
+              "name": "delay",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "delay"
+            },
+            {
+              "kind": "field",
+              "name": "delayOnTouchOnly",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "delayOnTouchOnly"
+            },
+            {
+              "kind": "field",
+              "name": "touchStartThreshold",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "touchStartThreshold"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "store",
+              "type": {
+                "text": "| {\n        get: (sortable: Sortable) => string[];\n        set: (sortable: Sortable) => void;\n      }\n    | undefined"
+              },
+              "attribute": "store"
+            },
+            {
+              "kind": "field",
+              "name": "animation",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "animation"
+            },
+            {
+              "kind": "field",
+              "name": "easing",
+              "type": {
+                "text": "string | undefined"
+              },
+              "attribute": "easing"
+            },
+            {
+              "kind": "field",
+              "name": "handle",
+              "type": {
+                "text": "string | undefined"
+              },
+              "attribute": "handle"
+            },
+            {
+              "kind": "field",
+              "name": "filter",
+              "type": {
+                "text": "| string\n    | ((\n        this: Sortable,\n        event: Event | TouchEvent,\n        target: HTMLElement,\n        sortable: Sortable,\n      ) => boolean)\n    | undefined"
+              },
+              "default": "'.ignore-elements'",
+              "attribute": "filter"
+            },
+            {
+              "kind": "field",
+              "name": "preventOnFilter",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "attribute": "preventOnFilter"
+            },
+            {
+              "kind": "field",
+              "name": "draggableSelector",
+              "type": {
+                "text": "string"
+              },
+              "default": "'>*'",
+              "attribute": "draggableSelector"
+            },
+            {
+              "kind": "field",
+              "name": "dataIdAttr",
+              "type": {
+                "text": "string"
+              },
+              "default": "'data-id'",
+              "attribute": "data-id"
+            },
+            {
+              "kind": "field",
+              "name": "ghostClass",
+              "type": {
+                "text": "string"
+              },
+              "default": "'sortable-ghost'",
+              "attribute": "ghostClass"
+            },
+            {
+              "kind": "field",
+              "name": "chosenClass",
+              "type": {
+                "text": "string"
+              },
+              "default": "'sortable-chosen'",
+              "attribute": "chosenClass"
+            },
+            {
+              "kind": "field",
+              "name": "dragClass",
+              "type": {
+                "text": "string"
+              },
+              "default": "'sortable-drag'",
+              "attribute": "dragClass"
+            },
+            {
+              "kind": "field",
+              "name": "ignore",
+              "type": {
+                "text": "string"
+              },
+              "default": "'a, img'",
+              "attribute": "ignore"
+            },
+            {
+              "kind": "field",
+              "name": "swapThreshold",
+              "type": {
+                "text": "number"
+              },
+              "default": "1",
+              "attribute": "swapThreshold"
+            },
+            {
+              "kind": "field",
+              "name": "invertSwap",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "invertSwap"
+            },
+            {
+              "kind": "field",
+              "name": "invertedSwapThreshold",
+              "type": {
+                "text": "number | undefined"
+              },
+              "attribute": "invertedSwapThreshold"
+            },
+            {
+              "kind": "field",
+              "name": "direction",
+              "type": {
+                "text": "'vertical' | 'horizontal'"
+              },
+              "default": "'vertical'",
+              "attribute": "direction"
+            },
+            {
+              "kind": "field",
+              "name": "forceFallback",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "forceFallback"
+            },
+            {
+              "kind": "field",
+              "name": "fallbackClass",
+              "type": {
+                "text": "string"
+              },
+              "default": "'sortable-fallback'",
+              "attribute": "fallbackClass"
+            },
+            {
+              "kind": "field",
+              "name": "fallbackOnBody",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "fallbackOnBody"
+            },
+            {
+              "kind": "field",
+              "name": "fallbackTolerance",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "fallbackTolerance"
+            },
+            {
+              "kind": "field",
+              "name": "fallbackOffset",
+              "type": {
+                "text": "object"
+              },
+              "default": "{ x: 0, y: 0 }",
+              "attribute": "fallbackOffset"
+            },
+            {
+              "kind": "field",
+              "name": "dropBubble",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "dropBubble"
+            },
+            {
+              "kind": "field",
+              "name": "dragoverBubble",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "dragoverBubble"
+            },
+            {
+              "kind": "field",
+              "name": "removeCloneOnHide",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "attribute": "removeCloneOnHide"
+            },
+            {
+              "kind": "field",
+              "name": "emptyInsertThreshold",
+              "type": {
+                "text": "number"
+              },
+              "default": "5",
+              "attribute": "emptyInsertThreshold"
+            },
+            {
+              "kind": "field",
+              "name": "renderTarget",
+              "type": {
+                "text": "Array<HTMLElement>"
+              },
+              "description": "The target element for rendering the sortable list."
+            },
+            {
+              "kind": "method",
+              "name": "_litHtmlRender"
+            },
+            {
+              "kind": "field",
+              "name": "_lightDomTpl",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_sortableTpl",
+              "readonly": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "items",
+              "type": {
+                "text": "T[]"
+              },
+              "default": "[]",
+              "fieldName": "items"
+            },
+            {
+              "name": "renderItem",
+              "type": {
+                "text": "ItemTemplate<T>"
+              },
+              "fieldName": "renderItem"
+            },
+            {
+              "name": "keyFn",
+              "type": {
+                "text": "KeyFn<T>"
+              },
+              "fieldName": "keyFn"
+            },
+            {
+              "name": "group",
+              "type": {
+                "text": "string | Sortable.GroupOptions | undefined"
+              },
+              "fieldName": "group"
+            },
+            {
+              "name": "sort",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "fieldName": "sort"
+            },
+            {
+              "name": "delay",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "fieldName": "delay"
+            },
+            {
+              "name": "delayOnTouchOnly",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "delayOnTouchOnly"
+            },
+            {
+              "name": "touchStartThreshold",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "fieldName": "touchStartThreshold"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "store",
+              "type": {
+                "text": "| {\n        get: (sortable: Sortable) => string[];\n        set: (sortable: Sortable) => void;\n      }\n    | undefined"
+              },
+              "fieldName": "store"
+            },
+            {
+              "name": "animation",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "fieldName": "animation"
+            },
+            {
+              "name": "easing",
+              "type": {
+                "text": "string | undefined"
+              },
+              "fieldName": "easing"
+            },
+            {
+              "name": "handle",
+              "type": {
+                "text": "string | undefined"
+              },
+              "fieldName": "handle"
+            },
+            {
+              "name": "filter",
+              "type": {
+                "text": "| string\n    | ((\n        this: Sortable,\n        event: Event | TouchEvent,\n        target: HTMLElement,\n        sortable: Sortable,\n      ) => boolean)\n    | undefined"
+              },
+              "default": "'.ignore-elements'",
+              "fieldName": "filter"
+            },
+            {
+              "name": "preventOnFilter",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "fieldName": "preventOnFilter"
+            },
+            {
+              "name": "draggableSelector",
+              "type": {
+                "text": "string"
+              },
+              "default": "'>*'",
+              "fieldName": "draggableSelector"
+            },
+            {
+              "name": "data-id",
+              "type": {
+                "text": "string"
+              },
+              "default": "'data-id'",
+              "fieldName": "dataIdAttr"
+            },
+            {
+              "name": "ghostClass",
+              "type": {
+                "text": "string"
+              },
+              "default": "'sortable-ghost'",
+              "fieldName": "ghostClass"
+            },
+            {
+              "name": "chosenClass",
+              "type": {
+                "text": "string"
+              },
+              "default": "'sortable-chosen'",
+              "fieldName": "chosenClass"
+            },
+            {
+              "name": "dragClass",
+              "type": {
+                "text": "string"
+              },
+              "default": "'sortable-drag'",
+              "fieldName": "dragClass"
+            },
+            {
+              "name": "ignore",
+              "type": {
+                "text": "string"
+              },
+              "default": "'a, img'",
+              "fieldName": "ignore"
+            },
+            {
+              "name": "swapThreshold",
+              "type": {
+                "text": "number"
+              },
+              "default": "1",
+              "fieldName": "swapThreshold"
+            },
+            {
+              "name": "invertSwap",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "invertSwap"
+            },
+            {
+              "name": "invertedSwapThreshold",
+              "type": {
+                "text": "number | undefined"
+              },
+              "fieldName": "invertedSwapThreshold"
+            },
+            {
+              "name": "direction",
+              "type": {
+                "text": "'vertical' | 'horizontal'"
+              },
+              "default": "'vertical'",
+              "fieldName": "direction"
+            },
+            {
+              "name": "forceFallback",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "forceFallback"
+            },
+            {
+              "name": "fallbackClass",
+              "type": {
+                "text": "string"
+              },
+              "default": "'sortable-fallback'",
+              "fieldName": "fallbackClass"
+            },
+            {
+              "name": "fallbackOnBody",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "fallbackOnBody"
+            },
+            {
+              "name": "fallbackTolerance",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "fieldName": "fallbackTolerance"
+            },
+            {
+              "name": "fallbackOffset",
+              "type": {
+                "text": "object"
+              },
+              "default": "{ x: 0, y: 0 }",
+              "fieldName": "fallbackOffset"
+            },
+            {
+              "name": "dropBubble",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "dropBubble"
+            },
+            {
+              "name": "dragoverBubble",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "dragoverBubble"
+            },
+            {
+              "name": "removeCloneOnHide",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "fieldName": "removeCloneOnHide"
+            },
+            {
+              "name": "emptyInsertThreshold",
+              "type": {
+                "text": "number"
+              },
+              "default": "5",
+              "fieldName": "emptyInsertThreshold"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "sortable-component-list",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SortableComponentList",
+          "declaration": {
+            "name": "SortableComponentList",
+            "module": "src/SortableComponentList.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/SortableController.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "SortableController",
+          "members": [
+            {
+              "kind": "field",
+              "name": "sortable",
+              "type": {
+                "text": "Sortable | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "hostDisconnected"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "SortableController",
+          "declaration": {
+            "name": "SortableController",
+            "module": "src/SortableController.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/all-sortable-components-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  box-sizing: border-box;\n  display: block;\n  padding: 2rem;\n  background-color: #fef7ff;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\nul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n}\n\nhr {\n  border: none;\n  background: linear-gradient(to right, transparent, hsla(0, 0%, 60%, 0.5), transparent);\n  height: 0.0625rem;\n  margin: 1rem 0;\n}\n\n[role=heading] {\n  font-size: 2rem;\n  font-weight: 700;\n  margin-bottom: 1rem;\n}\n\n.hr {\n  margin-top: 2rem;\n  background-color: #f3edf7;\n  padding: 2em 1rem 0;\n}\n\nform {\n  margin-bottom: 1rem;\n}\n\nsortable-component-list {\n  padding: 0;\n}\n\n.group {\n  display: flex;\n  gap: 8px;\n  width: 100%;\n}\n.group > * {\n  flex: 1;\n}\n\n.list-group {\n  margin: 1rem 0;\n  width: 100%;\n  border: 1px solid hsla(0, 0%, 60%, 0.5);\n  display: block;\n}\n.list-group li {\n  height: 64px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  padding-inline: 16px;\n  box-sizing: border-box;\n  font-family: Arial, sans-serif;\n  border: 1px solid hsla(0, 0%, 60%, 0.5);\n  background-color: white;\n}\n.list-group .non-draggable {\n  color: rgb(from currentcolor r g b/50%);\n}\n.list-group .sortable-ghost {\n  opacity: 0.75;\n  background-color: rgb(149, 206, 225);\n}\n.list-group .sortable-swap-highlight {\n  background-color: lch(from darkolivegreen calc(l + 20) c h);\n  color: white;\n}\n\n.name {\n  font-size: 20px;\n}\n\n.animal {\n  font-size: 12px;\n}`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/all-sortable-components-styles.css.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/sortable-component-list-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  box-sizing: border-box;\n  display: block;\n  padding: 1rem;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/sortable-component-list-styles.css.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/sortable-component-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host {\n  box-sizing: border-box;\n  display: block;\n  padding: 1rem;\n  background-color: #f3edf7;\n}\n\n:host([hidden]),\n[hidden] {\n  display: none !important;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n\nul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n}\n\n[role=heading] {\n  font-size: 2rem;\n  font-weight: 700;\n  margin-bottom: 1rem;\n}\n[role=heading] + button {\n  display: inline-block;\n  margin-bottom: 0.5rem;\n}\n\nhr {\n  border: none;\n  background: linear-gradient(to right, transparent, hsla(0, 0%, 60%, 0.5), transparent);\n  height: 0.0625rem;\n  margin: 1rem 0;\n}\n\n.list-group {\n  width: 100%;\n  border: 1px solid hsla(0, 0%, 60%, 0.5);\n  display: block;\n  margin: 1rem 0;\n}\n.list-group li {\n  height: 64px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  padding-inline: 16px;\n  box-sizing: border-box;\n  font-family: Arial, sans-serif;\n  border: 1px solid hsla(0, 0%, 60%, 0.5);\n  background-color: white;\n}\n.list-group .non-draggable {\n  color: rgb(from currentcolor r g b/50%);\n}\n.list-group .sortable-ghost {\n  opacity: 0.75;\n  background-color: rgb(149, 206, 225);\n}\n.list-group .sortable-swap-highlight {\n  background-color: lch(from darkolivegreen calc(l + 20) c h);\n  color: white;\n}\n\n.name {\n  font-size: 20px;\n}\n\n.animal {\n  font-size: 12px;\n}`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/sortable-component-styles.css.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/all-sortable-components.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "all-sortable-components",
+          "declaration": {
+            "name": "AllSortableComponents",
+            "module": "/src/AllSortableComponents.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/sortable-component-list.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "sortable-component-list",
+          "declaration": {
+            "name": "SortableComponentList",
+            "module": "/src/SortableComponentList.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "define/sortable-component.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "sortable-component",
+          "declaration": {
+            "name": "SortableComponent",
+            "module": "/src/SortableComponent.js"
+          }
+        }
+      ]
+    }
+  ]
+}
